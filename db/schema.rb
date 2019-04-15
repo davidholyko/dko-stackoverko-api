@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_15_125241) do
+ActiveRecord::Schema.define(version: 2019_04_15_152425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,11 @@ ActiveRecord::Schema.define(version: 2019_04_15_125241) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "question_id"
+    t.bigint "comment_id"
+    t.index ["comment_id"], name: "index_likes_on_comment_id"
     t.index ["comments_id"], name: "index_likes_on_comments_id"
+    t.index ["question_id"], name: "index_likes_on_question_id"
     t.index ["questions_id"], name: "index_likes_on_questions_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
@@ -70,7 +74,9 @@ ActiveRecord::Schema.define(version: 2019_04_15_125241) do
   add_foreign_key "comments", "questions"
   add_foreign_key "comments", "users"
   add_foreign_key "examples", "users"
+  add_foreign_key "likes", "comments"
   add_foreign_key "likes", "comments", column: "comments_id"
+  add_foreign_key "likes", "questions"
   add_foreign_key "likes", "questions", column: "questions_id"
   add_foreign_key "likes", "users"
   add_foreign_key "questions", "users"

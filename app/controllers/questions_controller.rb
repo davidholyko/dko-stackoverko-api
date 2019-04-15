@@ -44,7 +44,7 @@ class QuestionsController < OpenReadController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_question
-    @question = current_user.questions.new(question_params)
+    @question = current_user.questions.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.

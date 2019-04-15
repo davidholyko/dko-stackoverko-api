@@ -44,7 +44,7 @@ class CommentsController < OpenReadController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_comment
-    @comment = current_user.comments.new(comment_params)
+    @comment = current_user.comments.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.

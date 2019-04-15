@@ -4,4 +4,5 @@ class User < ApplicationRecord
   include Authentication
   has_many :questions
   has_many :comments
+  has_many :likes
 end
