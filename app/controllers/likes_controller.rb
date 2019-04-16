@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class LikesController < ApplicationController
+class LikesController < OpenReadController
   before_action :set_like, only: %i[show update destroy]
 
   # GET /likes
@@ -17,6 +17,8 @@ class LikesController < ApplicationController
 
   # POST /likes
   def create
+    return if already_liked?
+
     @like = current_user.likes.new(like_params)
 
     if @like.save
@@ -42,6 +44,10 @@ class LikesController < ApplicationController
 
   private
 
+  def already_liked?
+    Like.exists?(user_id: current_user.id, question_id: like_params[:question_id])
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_like
     @like = current_user.likes.new(like_params)
@@ -49,6 +55,6 @@ class LikesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def like_params
-    params.require(:like).permit(:comments_id, :questions_id)
+    params.require(:like).permit(:question_id, :references)
   end
 end

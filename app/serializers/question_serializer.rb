@@ -3,6 +3,7 @@
 class QuestionSerializer < ActiveModel::Serializer
   attributes :id, :title, :body, :anonymous, :creator
   has_many :comments
+  has_many :likes
 
   def creator
     object.user[:handle]
