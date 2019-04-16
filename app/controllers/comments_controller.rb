@@ -7,12 +7,12 @@ class CommentsController < OpenReadController
   def index
     @comments = Comment.all
 
-    render json: @comments
+    render json: @comments, include: '**'
   end
 
   # GET /comments/1
   def show
-    render json: @comment
+    render json: @comment, include: '**'
   end
 
   # POST /comments

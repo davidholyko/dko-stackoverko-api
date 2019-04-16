@@ -27,13 +27,13 @@ class UsersController < OpenReadController
   # GET '/users/:handle'
   def show
     @handle = User.find_by handle: params[:handle]
-    render json: @handle
+    render json: @handle, include: '**'
   end
 
   # GET '/users'
   def index
     @handles = User.all
-    render json: @handles
+    render json: @handles, include: '**'
   end
 
   # DELETE '/sign-out'

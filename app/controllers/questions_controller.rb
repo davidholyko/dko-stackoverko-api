@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class QuestionsController < OpenReadController
-  before_action :set_question, only: %i[show update destroy]
+  before_action :set_question, only: %i[update destroy]
 
   # GET /questions
   def index
@@ -12,7 +12,8 @@ class QuestionsController < OpenReadController
 
   # GET /questions/1
   def show
-    render json: @question
+    @question = Question.find_by id: params[:id]
+    render json: @question, include: '**'
   end
 
   # POST /questions
