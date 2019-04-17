@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 class LikeSerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :creator
+  attributes :id, :creator, :question_id, :user_id
   # has_one :comments
-  has_one :question
-
+  # has_one :question
   def creator
     object.user[:handle]
   end
