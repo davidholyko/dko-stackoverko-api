@@ -7,12 +7,12 @@ class LikesController < OpenReadController
   def index
     @likes = Like.all
 
-    render json: @likes
+    render json: @likes, include: '**'
   end
 
   # GET /likes/1
   def show
-    render json: @like
+    render json: @like, include: '**'
   end
 
   # POST /likes
@@ -39,6 +39,8 @@ class LikesController < OpenReadController
 
   # DELETE /likes/1
   def destroy
+    # return unless already_liked?
+
     @like.destroy
   end
 
@@ -50,7 +52,7 @@ class LikesController < OpenReadController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_like
-    @like = current_user.likes.new(like_params)
+    @like = current_user.likes.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.

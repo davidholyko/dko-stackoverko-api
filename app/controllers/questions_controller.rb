@@ -7,7 +7,7 @@ class QuestionsController < OpenReadController
   def index
     @questions = Question.all
 
-    render json: @questions
+    render json: @questions, include: '**'
   end
 
   # GET /questions/1
