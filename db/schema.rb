@@ -47,7 +47,11 @@ ActiveRecord::Schema.define(version: 2019_04_15_152425) do
 
   create_table "questions", force: :cascade do |t|
     t.string "title"
-    t.string "body"
+    t.string "summary"
+    t.string "background"
+    t.string "code"
+    t.string "results"
+    t.string "tags"
     t.boolean "anonymous"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

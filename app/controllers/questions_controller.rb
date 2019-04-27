@@ -50,6 +50,6 @@ class QuestionsController < OpenReadController
 
   # Only allow a trusted parameter "white list" through.
   def question_params
-    params.require(:question).permit(:title, :body, :anonymous, :references)
+    params.require(:question).permit(:title, :summary, :background, :code, :results, :tags, :anonymous, :references)
   end
 end
